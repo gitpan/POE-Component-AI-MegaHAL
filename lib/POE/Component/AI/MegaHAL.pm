@@ -1,11 +1,12 @@
 package POE::Component::AI::MegaHAL;
 
+use strict;
 use AI::MegaHAL;
 use POE 0.31 qw(Wheel::Run Filter::Line Filter::Reference);
 use Carp;
 use vars qw($VERSION);
 
-$VERSION = '1.01';
+$VERSION = '1.02';
 
 sub spawn {
   my $package = shift;

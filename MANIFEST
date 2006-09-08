@@ -5,6 +5,10 @@ megahal.trn
 megahal.dic
 megahal.brn
 README
+Changes
 lib/POE/Component/AI/MegaHAL.pm
 t/1_spawn.t
+t/2_pod.t
+t/3_pod_coverage.t
+examples/synopsis.pl
 META.yml                                 Module meta-data (added by MakeMaker)

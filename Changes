@@ -1,0 +1,6 @@
+POE::Component::AI::MegaHAL
+===========================
+
+1.02	Fri Sep 08 16:58:18 BST 2006
+	- Added Changes
+	- Added POD tests
