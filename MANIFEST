@@ -1,14 +1,19 @@
+Changes
+examples/synopsis.pl
+inc/Module/Install.pm
+inc/Module/Install/Base.pm
+inc/Module/Install/Makefile.pm
+inc/Module/Install/MakeMaker.pm
+inc/Module/Install/Metadata.pm
+lib/POE/Component/AI/MegaHAL.pm
+Makefile.PL
 MANIFEST
 MANIFEST.SKIP
-Makefile.PL
-megahal.trn
-megahal.dic
 megahal.brn
+megahal.dic
+megahal.trn
+META.yml			Module meta-data (added by MakeMaker)
 README
-Changes
-lib/POE/Component/AI/MegaHAL.pm
 t/1_spawn.t
 t/2_pod.t
 t/3_pod_coverage.t
-examples/synopsis.pl
-META.yml                                 Module meta-data (added by MakeMaker)
