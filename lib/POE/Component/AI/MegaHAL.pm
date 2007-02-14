@@ -6,7 +6,7 @@ use POE 0.31 qw(Wheel::Run Filter::Line Filter::Reference);
 use Carp;
 use vars qw($VERSION);
 
-$VERSION = '1.04';
+$VERSION = '1.05';
 
 sub spawn {
   my $package = shift;
@@ -58,26 +58,18 @@ sub _megahal_function {
   }
 
 
-  if ( $state eq 'do_reply' and !defined $args->{text} ) {
-	return;
-  }
+  return if $state eq 'do_reply' and !defined $args->{text};
 
-  if ( $state eq 'initial_greeting' and defined $args->{text} ) {
-	delete $args->{text};
-  }
+  delete $args->{text} if $state eq 'initial_greeting' and defined $args->{text};
   
-  if ( $state eq '_cleanup' and defined $args->{text} ) {
-	delete $args->{text};
-  }
+  delete $args->{text} if $state eq '_cleanup' and defined $args->{text};
   
   $args->{sender} = $sender;
   $args->{func} = $state;
   $kernel->refcount_increment( $sender => __PACKAGE__ );
   $args->{sender} = $sender;
 
-  if ( defined $self->{wheel} ) {
-	$self->{wheel}->put( $args );
-  }
+  $self->{wheel}->put( $args ) if defined $self->{wheel};
   return;
 }
 
@@ -89,8 +81,6 @@ sub _start {
   } else {
 	$kernel->refcount_increment( $self->{session_id} => __PACKAGE__ );
   }
-
-  #$kernel->sig( 'CHLD' => '_sig_chld' );
 
   $self->{wheel} = POE::Wheel::Run->new(
 	Program => \&main,

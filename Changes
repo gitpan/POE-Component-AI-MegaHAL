@@ -1,6 +1,11 @@
 POE::Component::AI::MegaHAL
 ===========================
 
+1.05	Wed Feb 14 11:08:45 GMT 2006
+	- Added kwalitee test.
+	- Minor code tweaks.
+	- prereq of AI::MegaHAL updated to 0.05
+
 1.04	Tue Dec 27 12:48:47 GMT 2006
 	- Converted completely to Module::Install;
 	- Switched to sig_child() behaviour from POE-0.38;
