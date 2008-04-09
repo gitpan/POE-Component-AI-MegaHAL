@@ -1,8 +1,10 @@
     use strict;
     use POE qw(Component::AI::MegaHAL);
 
+    $|=1;
+
     my $poco = POE::Component::AI::MegaHAL->spawn( autosave => 1, debug => 0,
-                                                   path => '.', options => { trace => 1 } );
+                                                   path => '.', options => { trace => 0 } );
 
     POE::Session->create(
         package_states => [
