@@ -5,7 +5,7 @@ author:
 build_requires:
   Test::More: 0.47
 distribution_type: module
-generated_by: 'Module::Install version 0.71'
+generated_by: 'Module::Install version 0.72'
 license: perl
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.3.html
@@ -23,4 +23,4 @@ requires:
   POE::Filter::Reference: 0
   POE::Wheel::Run: 0
   perl: 5.000
-version: 1.12
+version: 1.14

@@ -1,3 +1,4 @@
+use strict;
 use inc::Module::Install;
 name 'POE-Component-AI-MegaHAL';
 license 'perl';
