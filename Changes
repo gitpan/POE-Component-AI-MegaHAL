@@ -1,6 +1,9 @@
 POE::Component::AI::MegaHAL
 ===========================
 
+1.16	Thu Jul 24 11:27:48 BST 2008
+	- Added 'learn' as per RT #37894
+
 1.14	Thu May  8 17:13:16 BST 2008
 	- Removed kwalitee test and add license information
 
