@@ -7,7 +7,7 @@ use POE qw(Wheel::Run Filter::Line Filter::Reference);
 use Carp;
 use vars qw($VERSION);
 
-$VERSION = '1.16';
+$VERSION = '1.18';
 
 sub spawn {
   my $package = shift;
@@ -18,7 +18,7 @@ sub spawn {
   my $options = delete $params{'options'};
   my $self = bless \%params, $package;
 
-  $self->{session_id} = POE::Session->create(
+  POE::Session->create(
 	object_states => [
 		$self => {
 			do_reply         => '_megahal_function',
@@ -29,7 +29,7 @@ sub spawn {
 		$self => [ qw(_child_closed _child_error _child_stderr _child_stdout _start shutdown _sig_chld) ],
 	],
 	( ref ( $options ) eq 'HASH' ? ( options => $options ) : () ),
-  )->ID();
+  );
 
   return $self;
 }
@@ -77,6 +77,7 @@ sub _megahal_function {
 
 sub _start {
   my ($kernel,$self) = @_[KERNEL,OBJECT];
+  $self->{session_id} = $_[SESSION]->ID();
 
   if ( $self->{alias} ) {
 	$kernel->alias_set( $self->{alias} );
@@ -216,7 +217,7 @@ POE::Component::AI::MegaHAL provides a non-blocking wrapper around L<AI::MegaHAL
 
 =over 
 
-=item spawn
+=item C<spawn>
 
 Accepts a number of arguments: 
 
@@ -225,7 +226,7 @@ Accepts a number of arguments:
   'options' is a hashref of parameters to pass to the component's POE::Session; 
   'alias', is supported for using POE::Kernel aliases;
 
-=item session_id
+=item C<session_id>
 
 Returns the component session id.
 
@@ -242,25 +243,25 @@ The 'shutdown' event doesn't require any parameters.
 
 =over
 
-=item intial_greeting
+=item C<intial_greeting>
 
 Solicits the initial greeting returned by the brain on start-up.
 
-=item do_reply
+=item C<do_reply>
 
 Submits text to the brain and solicits a reply.
 In the hashref you must specify 'text' with the data you wish to submit to the L<AI::MegaHAL> object.
 
-=item learn
+=item C<learn>
 
 Submits text to the brain without soliciting a reply.
 In the hashref you must specify 'text' with the data you wish to submit to the L<AI::MegaHAL> object.
 
-=item _cleanup
+=item C<_cleanup>
 
 Saves the megahal brain to file.
 
-=item shutdown
+=item C<shutdown>
 
 Shuts the component down gracefully. Any pending requests will be serviced and return events dispatched.
 
@@ -279,7 +280,7 @@ with contributions by David Davies <xantus>.
 
 =head1 LICENSE
 
-Copyright C<(c)> Chris Williams and David Davis
+Copyright E<copy> Chris Williams and David Davis
 
 This module may be used, modified, and distributed under the same terms as Perl itself. Please see the license that came with your Perl distribution for details.
 
